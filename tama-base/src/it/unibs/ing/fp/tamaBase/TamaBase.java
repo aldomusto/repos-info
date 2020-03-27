@@ -18,6 +18,7 @@ public class TamaBase {
 		this.stato = stato;
 	}
 
+	@Override
 	public String toString() {
 
 		StringBuffer messaggio = new StringBuffer();
