@@ -7,13 +7,12 @@ public class TamaMain {
 	public static final int MAX_CAREZZE = 20;
 	public static final int MAX_BISCOTTI = 20;
 
+	private static TamaBase tama1 = TamaUtils.creaTama();
+	
 	public static void main(String[] args) {
 
 		System.out.println("Tamagotchi (test v1.0)");
 
-		TamaBase tama1 = TamaUtils.creaTama();
-
-		// System.out.println(tama1.toString());
 		if (tama1.contollaParametri())
 			compiAzione(azioneScelta());
 		
