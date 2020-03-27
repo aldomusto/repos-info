@@ -14,29 +14,38 @@ public class TamaMain {
 		TamaBase tama1 = TamaUtils.creaTama();
 
 		// System.out.println(tama1.toString());
-
-		int scelta;
-
-		do {
-
-			scelta = InputDati.leggiIntero(
-					"Cosa vuoi fare?\n1 per dare una carezza\n2 per dare un biscotto\n0 per uscire: ", 0, 2);
+		if (tama1.contollaParametri())
+			compiAzione(azioneScelta());
+		
+		tama1.salutoFinale();
+	}
+	
+	private static int azioneScelta() {
+		
+		return InputDati.leggiIntero("Cosa vuoi fare?" + "\n1 per dare una carezza"
+					+ "\n2 per dare un biscotto" + "\n0 per uscire: ", 0, 2);
+	}
+	
+	private static void compiAzione(int scelta) {
 
 			switch (scelta) {
+
 			case 1:
 				int n_carezze = InputDati.leggiIntero(
 						String.format("Quante carezze vuoi dargli (da 1 a %d) = ", MAX_CAREZZE), 1, MAX_CAREZZE);
 				tama1.daiCarezza(n_carezze);
 				break;
+
 			case 2:
 				int n_biscotti = InputDati.leggiIntero(
-						String.format(("Quanti biscotti vuoi dargli (da 1 a %d) = "), MAX_BISCOTTI), 1, MAX_BISCOTTI);
+						String.format(("Quanti biscotti vuoi dargli (da 1 a %d) = "), MAX_BISCOTTI), 1,
+						MAX_BISCOTTI);
 				tama1.daiBiscotto(n_biscotti);
 				break;
 			}
-
+			
 			System.out.print(tama1.toString());
-		} while (scelta != 0);
+	
 	}
 
 }

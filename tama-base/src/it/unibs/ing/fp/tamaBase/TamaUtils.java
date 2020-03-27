@@ -2,12 +2,13 @@ package it.unibs.ing.fp.tamaBase;
 
 import it.unibs.fp.mylib.*;
 
-public class TamaUtils {
+public class TamaUtils extends TamaBase{
 
-	public static final int MINIMO_VALORI = 0;
-	public static final int MASSIMO_VALORI = 100;
+	private static final int MINIMO_VALORI = 0;
+	private static final int MASSIMO_VALORI = 100;
 
 	static TamaBase creaTama() {
+		
 		TamaBase tama = new TamaBase();
 
 		leggiSoddisfazione(tama);
