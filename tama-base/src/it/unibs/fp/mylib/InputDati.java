@@ -82,7 +82,6 @@ public class InputDati
 	   return valoreLetto;
 	  }
 	  
-	  
 	  public static int leggiIntero (String messaggio)
 	  {
 	   boolean finito = false;
