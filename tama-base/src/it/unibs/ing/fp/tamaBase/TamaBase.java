@@ -1,7 +1,7 @@
 package it.unibs.ing.fp.tamaBase;
 
 public class TamaBase {
-
+	
 	protected static final int MINIMO_VALORI = 0;
 	protected static final int MASSIMO_VALORI = 100;
 
@@ -11,15 +11,21 @@ public class TamaBase {
 	protected int soddisfazione;
 	protected int sazieta;
 	protected String nome;
+	
+	private Stato stato = Stato.CONTINUA;
+	
+	public void setStato(Stato stato) {
+		this.stato = stato;
+	}
 
 	public String toString() {
 
 		StringBuffer messaggio = new StringBuffer();
 
-		messaggio.append(String.format("Stato attuale :"
+		messaggio.append(String.format("\nStato attuale :"
 				+ "\nNome = %s"
 				+ "\nSazieta = %d"
-				+ "\nSoddisfazione = %d"
+				+ "\nSoddisfazione = %d\n"
 				, nome,	sazieta, soddisfazione));
 
 		if (verificaFelicita() || verificaInfelicita()) {
@@ -74,23 +80,31 @@ public class TamaBase {
 		return (sazieta <= VAL_INFELICITA || soddisfazione <= VAL_INFELICITA);
 	}
 
-	public boolean contollaParametri() {
+	public Stato contollaStato() {
 
-		if (sazieta < 1) {
-			System.out.print(nome + " e' morto di fame!");
-			return false;
+		switch (stato) {
+
+		case FINE_GIOCO:
+			toString();
+			System.out.print("Grazie di aver giocato con me! Alla prossima!");
+			return Stato.FINE_GIOCO;
+
+		case CONTINUA:
+			if (sazieta < 1) {
+				System.out.print(nome + " e' morto di fame!");
+				return Stato.MORTO;
+			}
+
+			if (soddisfazione < 1) {
+				System.out.print(nome + " e' morto per carenza d'affetto!");
+				return Stato.MORTO;
+			}
+			return Stato.CONTINUA;
+			
+		default:
+			return Stato.CONTINUA;
 		}
-
-		if (soddisfazione < 1) {
-			System.out.print(nome + " e' morto per carenza d'affetto!");
-			return false;
-		}
-		return true;
-	}
-
-	public void salutoFinale() {
-		toString();
-		System.out.print("Grazie di aver giocato con me! Alla prossima!");
+		
 	}
 
 }
